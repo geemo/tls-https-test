@@ -4,7 +4,7 @@ const tls = require('tls');
 const fs = require('fs');
 
 const options = {
-	pfx: fs.readFileSync('./keys/client/client.pfx')
+	pfx: fs.readFileSync('../keys/client/client.pfx')
 };
 
 let socket = tls.connect(80, options, () => {

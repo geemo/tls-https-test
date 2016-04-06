@@ -4,8 +4,9 @@ const tls = require('tls');
 const fs = require('fs');
 
 const options = {
-	pfx: fs.readFileSync('./keys/server/server.pfx'),
-	requestCert: true
+	pfx: fs.readFileSync('../keys/server/server.pfx'),
+	requestCert: true   //if true the server will request a certificate from clients
+						//that connect and attempt to verify that certificate. Default: fasle.
 };
 
 let server = tls.createServer(options, socket => {
