@@ -25,24 +25,26 @@ $ openssl x509 -req -in ca-csr.pem -signkey ca-key.pem -out ca-cert.pem
 ##### 1) 创建私钥
 
 ```bash
-$ openssl genrsa -out &lt;server|client&gt; -key 2048
+$ openssl genrsa -out <server|client> -key 2048
 ```
 
 ##### 2) 同上创建证书签名请求(注意Common Name要匹配服务器域名)
 
 ```bash
-$ openssl req -new -sha256 -key &lt;server|client&gt; -key -out &lt;server|client&gt; -csr.pem
+$ openssl req -new -sha256 -key <server|client> -key -out <server|client> -csr.pem
 ```
 
 ##### 3) 向CA机构申请签名
 
 ```bash
-$ openssl x509 -req -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -in &lt;server|client&gt; -csr.pem -out
-&lt;server|client&gt; -cert.pem
+$ openssl x509 -req -CA ca-cert.pem -CAkey ca-key.pem /
+  -CAcreateserial -in <server|client> -csr.pem -out
+<server|client> -cert.pem
 ```
 
 ##### 4) 将证书和私钥打包成pfx文件(可选)
 
 ```bash
-$ openssl pkcs12 -export -in &lt;server|client&gt; -cert.pem -inkey &lt;server|client&gt; -key.pem -certfile ca-cert.pem -out &lt;server|client&gt;.pfx
+$ openssl pkcs12 -export -in <server|client> -cert.pem -inkey <server|client> /
+  -key.pem -certfile ca-cert.pem -out <server|client>.pfx
 ```
