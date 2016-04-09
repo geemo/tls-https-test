@@ -12,17 +12,16 @@ const options = {
     rejectUnauthorized: true
 };
 
-options.agent = new https.Agent(options);
-
-let req = https.request(options, res => {
-	res.setEncoding('utf8');
-	res.on('data', data => {
-		console.log(data);
-	})
+options.agent = new https.Agent({
+    keepAlive: true,
+    maxSockets: 5
 });
 
-req.end();
+let req;
+for (let i = 0; i < 100; ++i) {
+    req = https.request(options);
+    req.end();    
+}
 
-req.on('error', err => {
-	console.error(err);
-});
+console.log(options.agent);
+console.log(options.agent.maxSockets);
