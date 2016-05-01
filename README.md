@@ -25,13 +25,13 @@ $ openssl x509 -req -in ca-csr.pem -signkey ca-key.pem -out ca-cert.pem
 ##### 1) 创建私钥
 
 ```bash
-$ openssl genrsa -out <server|client>-key 2048
+$ openssl genrsa -out <server|client>-key.pem 2048
 ```
 
 ##### 2) 同上创建证书签名请求(注意Common Name要匹配服务器域名)
 
 ```bash
-$ openssl req -new -sha256 -key <server|client>-key -out <server|client> -csr.pem
+$ openssl req -new -sha256 -key <server|client>-key.pem -out <server|client> -csr.pem
 ```
 
 ##### 3) 向CA机构申请签名
